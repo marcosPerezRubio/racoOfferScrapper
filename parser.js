@@ -9,8 +9,7 @@ const ROW_KEYS_OFFER = [
     "description",
     "city",
     "workday",
-    "requirements",
-    ["insertionDate", "expirationDate"],
+    "requirements", ["insertionDate", "expirationDate"],
     null,
     "projectDescription",
     "contact",
@@ -20,29 +19,29 @@ const ROW_KEYS_OFFER = [
 
 
 function parseHTML(html) {
-    var $ = cheerio.load(html);
-    var ofertes = [];
+    let $ = cheerio.load(html);
+    let ofertes = [];
 
     $('.ofertaFeina').each(function() {
         let oferta = {};
-        var rows = $('table tr', this);
+        let rows = $('table tr', this);
         rows.each(function(index, row) {
             switch (index) {
                 case 0:
                     //Ignore
                     break;
                 case 6:
-                oferta[ROW_KEYS_OFFER[index][0]] = $($('td', this)[0]).text();
-                oferta[ROW_KEYS_OFFER[index][1]] = $($('td', this)[1]).text();                    //Ignore
+                    oferta[ROW_KEYS_OFFER[index][0]] = $($('td', this)[0]).text();
+                    oferta[ROW_KEYS_OFFER[index][1]] = $($('td', this)[1]).text(); //Ignore
                     break;
                 case 7:
                     //Ignore
                     break;
                 case 8:
-                    var correctIndex = index;
                     //TODO tener en cuenta el idioma del user
-                    if(!$($('th', this)[0]).text().startsWith('Breve')){
-                      ++correctIndex;
+                    let correctIndex = index;
+                    if (!$($('th', this)[0]).text().startsWith('Breve')) {
+                        ++correctIndex;
                     }
                     oferta[ROW_KEYS_OFFER[correctIndex]] = $('td', this).text();
                     break;
@@ -52,9 +51,10 @@ function parseHTML(html) {
         });
         ofertes.push(oferta);
     });
-    return {offers : ofertes};
+    return {
+        offers: ofertes
+    };
 }
-
 
 module.exports = {
     parseHTML: parseHTML
