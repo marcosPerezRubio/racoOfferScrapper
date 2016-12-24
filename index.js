@@ -12,7 +12,6 @@ const moment = require('moment');
 
 
 const FIB_URL = "http://www.fib.upc.edu/es/empresa/borsa.html"
-const SAMPLE_URL = "http://www.fib.upc.edu/es/empresa/borsa.html?tipus=pract&nom_empresa=PIM%20PAM%20RADAR&ciutat=&inici=18-11-2016"
 const DATE_FORMAT = "DD-MM-YYYY";
 
 const DEFAULT_QUERY_OBJECT = {
@@ -20,7 +19,7 @@ const DEFAULT_QUERY_OBJECT = {
     inici: moment().day(-31).format(DATE_FORMAT), //mandatory value
     nom_empresa: "",
     projectes: "on", // When "on", only final degree projects are shown
-    tipus: "pract" // value can be pract || borse
+    tipus: "pract" // value can be pract || borsa --> Right now, only pract offers can be correctly parsed
 };
 
 function *handleRequest() {

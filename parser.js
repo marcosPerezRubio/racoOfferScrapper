@@ -1,7 +1,7 @@
 'use strict';
 
-var cheerio = require('cheerio');
-var _ = require('lodash');
+const cheerio = require('cheerio');
+const _ = require('lodash');
 
 const ROW_KEYS_OFFER = [
     null,
@@ -28,14 +28,12 @@ function parseHTML(html) {
         rows.each(function(index, row) {
             switch (index) {
                 case 0:
-                    //Ignore
                     break;
                 case 6:
                     oferta[ROW_KEYS_OFFER[index][0]] = $($('td', this)[0]).text();
                     oferta[ROW_KEYS_OFFER[index][1]] = $($('td', this)[1]).text(); //Ignore
                     break;
                 case 7:
-                    //Ignore
                     break;
                 case 8:
                     //TODO tener en cuenta el idioma del user
