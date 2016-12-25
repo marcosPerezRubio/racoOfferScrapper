@@ -9,14 +9,13 @@ const ROW_KEYS_OFFER = [
     "description",
     "city",
     "workday",
-    "requirements", ["insertionDate", "expirationDate"],
+    "requirements",
+    ["insertionDate", "expirationDate"],
     null,
     "projectDescription",
     "contact",
     "moreInfo"
 ];
-
-
 
 function parseHTML(html) {
     let $ = cheerio.load(html);
