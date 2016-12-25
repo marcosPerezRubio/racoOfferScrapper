@@ -41,12 +41,12 @@ function *handleRequest() {
 router.post('/api/jobs', handleRequest);
 router.get('/api/jobs', handleRequest);
 
-app.use(serve(__dirname + '/dist'));
+app.use(serve(__dirname + '/public'));
 app.use(bodyParser());
 app.use(router.routes());
 
 app.use(function* index() {
-  yield send(this, __dirname + 'dist/index.html');
+  yield send(this, __dirname + 'public/index.html');
 });
 
 app.listen(3000);

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Racó Job Offers</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+
+</head>
+
+<body>
+    <div class="navbar-fixed">
+        <nav>
+            <div class="nav-wrapper blue lighten-1">
+                <a href="#" class="brand-logo">RACÓ Scrapper</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li><a href="">About</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div id="app">
+        <div class="row">
+            <div class="col s2"></div>
+            <div class="col s8">
+                <div v-for="offer in offers">
+                    <card :offer="offer"></card>
+                </div>
+            </div>
+            <div class="col s2"></div>
+        </div>
+    </div>
+    <script src="/dist/build.js"></script>
+</body>
+
+</html>

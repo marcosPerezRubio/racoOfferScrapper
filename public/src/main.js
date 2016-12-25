@@ -9,6 +9,9 @@ import Materials from 'vue-materials'
 
 Vue.use(Materials)
 
+Vue.component('card', require('./components/Card.vue'));
+
+
 new Vue({
   el:'#app',
   data : {
