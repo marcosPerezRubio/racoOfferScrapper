@@ -9,9 +9,11 @@ const parser = require('./parser.js');
 const _ = require('lodash');
 const querystring = require('querystring');
 const moment = require('moment');
+const serve = require('koa-static');
+const send = require('koa-send');
 
 
-const FIB_URL = "http://www.fib.upc.edu/es/empresa/borsa.html"
+const FIB_URL = "http://www.fib.upc.edu/es/empresa/borsa.html";
 const DATE_FORMAT = "DD-MM-YYYY";
 
 const DEFAULT_QUERY_OBJECT = {
@@ -36,9 +38,15 @@ function *handleRequest() {
   }
 }
 
-router.post('/', handleRequest);
-router.get('/', handleRequest);
+router.post('/api/jobs', handleRequest);
+router.get('/api/jobs', handleRequest);
 
+app.use(serve(__dirname + '/dist'));
 app.use(bodyParser());
 app.use(router.routes());
+
+app.use(function* index() {
+  yield send(this, __dirname + 'dist/index.html');
+});
+
 app.listen(3000);
