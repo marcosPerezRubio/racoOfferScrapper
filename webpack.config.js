@@ -11,11 +11,22 @@ module.exports = {
         rules: [{
             test: /app\.(js)$/,
             use: 'babel-loader'
-        }]
+        }],
+    },
+    resolve: {
+        alias: {
+            'vue$': 'vue/dist/vue.common.js'
+        }
     },
     plugins: [
         new webpack.optimize.UglifyJsPlugin({
             minimize: true
+        }),
+        new webpack.ProvidePlugin({
+            $: "jquery",
+            jQuery: "jquery",
+            'window.$' : "jquery",
+            'window.jQuery' : "jquery"
         })
     ]
 }

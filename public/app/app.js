@@ -1,14 +1,17 @@
+'use strict'
+
 import map from 'lodash/map'
+import data from './data.json'
+import Materialize from 'materialize-css'
+import Vue from 'vue'
+import Materials from 'vue-materials'
 
-function component () {
-  var element = document.createElement('div');
 
-  /* lodash is required for the next line to work */
-  element.innerHTML = map(['Hello','webpack'], function(item){
-    return item + ' ';
-  });
+Vue.use(Materials)
 
-  return element;
-}
-
-document.body.appendChild(component());
+new Vue({
+  el:'#app',
+  data : {
+    offers : data.offers
+  }
+})

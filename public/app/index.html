@@ -1,8 +1,35 @@
 <html>
 
 <head>
-    <title>Webpack demo</title>
-</head <body>
+    <title>Racó Job Offers</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+
+</head>
+
+<body>
+    <div id="app">
+        <div v-for="offer in offers">
+            <v-card class="blue-grey darken-1">
+                <div class="card-content white-text">
+                    <span class="card-title">{{offer.company}}</span>
+                    <p>
+                      {{offer.description}}
+                    </p>
+                </div>
+                <div class="card-content white-text">
+                    <span class="card-title">{{offer.city}}</span>
+                    <p>
+                      {{offer.requirements}}
+                    </p>
+                </div>
+                <div class="card-action">
+                    <a href="#">Más información</a>
+                </div>
+            </v-card>
+        </div>
+    </div>
 </body>
-<script src="bundle.js"></script>
+<!-- <script src="https://unpkg.com/vue@2.1.7/dist/vue.js"></script> -->
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script> -->
+<script type="text/javascript" src="bundle.js"></script>
 </html>
