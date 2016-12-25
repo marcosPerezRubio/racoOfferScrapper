@@ -11,7 +11,8 @@ const querystring = require('querystring');
 const moment = require('moment');
 const serve = require('koa-static');
 const send = require('koa-send');
-
+const iconv = require('node-iconv');
+var Buffer = require('buffer').Buffer;
 
 const FIB_URL = "http://www.fib.upc.edu/es/empresa/borsa.html";
 const DATE_FORMAT = "DD-MM-YYYY";
@@ -31,10 +32,15 @@ function *handleRequest() {
       url: FIB_URL + '?' + querystring.stringify(query)
   };
 
-  var response = yield request(options);
+  var response = yield request.get(options);
 
-  if (response.statusCode < 300) {
-      this.body = parser.parseHTML(response.body);
+  if (response) {
+      var ic = new iconv.Iconv('iso-8859-1', 'utf-8');
+      var buf = ic.convert(response.body);
+      var utf8String = buf.toString('utf-8');
+      this.body = parser.parseHTML(utf8String);
+
+      // this.body = response.data;
   }
 }
 
